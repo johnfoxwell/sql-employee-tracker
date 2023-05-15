@@ -27,5 +27,23 @@ inquirer
         }
     ])
     .then((response) => {
-        console.log(response.start)
-    })
+        const nextQuestion = response.name;
+
+        if (nextQuestion === "View All Employees") {
+            showEmployees();
+        } else if (nextQuestion === "Add Employee") {
+            addEmployee();
+        } else if (nextQuestion === "Update Employee Role") {
+            updateEmployeeRole();
+        } else if (nextQuestion === "View All Roles") {
+            showRoles();
+        } else if (nextQuestion === "Add Roles") {
+            addRoles();
+        } else if (nextQuestion === "View All Departments") {
+            showDepartments();
+        } else if (nextQuestion === "Add Departments") {
+            addDepartment();
+        } else {
+            process.exit();
+        }
+    });

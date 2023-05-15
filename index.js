@@ -1,6 +1,7 @@
 // Import
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
+const sequelize = require('./config/connection');
 
 // Start message
 console.log("----")
@@ -27,7 +28,8 @@ inquirer
         }
     ])
     .then((response) => {
-        const nextQuestion = response.name;
+        //console.log(response.start)
+        const nextQuestion = response.start
 
         if (nextQuestion === "View All Employees") {
             showEmployees();
@@ -47,3 +49,12 @@ inquirer
             process.exit();
         }
     });
+
+const showDepartments = () => {
+    db.query("select * from department;", (err, result) => {
+        if (err) {
+          console.log(err);
+        }
+        console.log(result);
+      });
+}

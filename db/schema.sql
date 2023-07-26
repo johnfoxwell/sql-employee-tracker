@@ -1,26 +1,25 @@
 DROP DATABASE IF EXISTS track_db;
 CREATE DATABASE track_db;
-
 USE track_db;
+
 
 CREATE TABLE department (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    dep_name VARCHAR(25) NOT NULL
+    name VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE role (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(25) NOT NULL,
-    dep_name VARCHAR(25) NOT NULL,
-    salary DECIMAL (10)
+    title VARCHAR(30) NOT NULL,
+    salary DECIMAL,
+    department_id INT REFERENCES department(id)
 );
 
 CREATE TABLE employee (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(25) NOT NULL,
-    last_name VARCHAR(25) NOT NULL,
-    title VARCHAR(25) NOT NULL,
-    dep_name VARCHAR(25) NOT NULL,
-    salary DECIMAL (10),
-    manager VARCHAR(25)
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    role_id INT REFERENCES role(id),
+    manager_id INT,
+    FOREIGN KEY (manager_id) REFERENCES employee(id)
 );
